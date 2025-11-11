@@ -1,14 +1,26 @@
 %{
-    #include "test.tab.h"
+    #include <stdio.h>
     #include <stdlib.h>
 %}
 
+DIGITS [0-9]
+NUMBER {DIGIT}+
+FUNCTION (sin|cos|tan|exp|log)
 %%
-[0-9]+ {yyval=atoi(yytext);return NUMBER;}
+{NUMBER} {printf("Number: %s",yytext);}
+{FUNCTION} {printf("Function: %s",yytext);}
+"+" {printf("Operator: %s",yytext);}
+"-" {printf("Operator: %s",yytext);}
+"/" {printf("Operator: %s",yytext);}
+"*" {printf("Operator: %s",yytext);}
 [ \t\n] ;
-. {return yytext[0];}
+. {printf("Unknown Text: %s"),yytext;}
 %%
+
 int yywrap(){
     return 1;
+}
+int main(){
+    printf("Enter)
 }
 
